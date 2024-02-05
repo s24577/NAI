@@ -1,4 +1,4 @@
-from models.emotion import EmotionDetectionModel
+from models.BERTbase import EmotionDetectionModel
 from models.facial_gesture import FacialGestureDetectionModel
 from models.pupil import PupilDetectionModel
 

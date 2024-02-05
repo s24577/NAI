@@ -1,24 +1,25 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
+import os
+import database
+from sklearn.metrics import f1_score, recall_score, precision_score
+
+current_directory = os.path.dirname(os.path.abspath(__file__))
+
+sample_sentences_path = os.path.join(current_directory, "..", "database", "sample_sentences.txt")
+
+with open(sample_sentences_path, "r", encoding="utf-8") as file:
+    test_sentences = [line.strip().split(": ")[1] for line in file.readlines()]
 
 tokenizer = AutoTokenizer.from_pretrained("SharanSMenon/22-languages-bert-base-cased")
 
 model = AutoModelForSequenceClassification.from_pretrained("SharanSMenon/22-languages-bert-base-cased")
 
 
-def predict(sentence):
-    tokenized = tokenizer(sentence, return_tensors="pt")
+def predict(in_sentence):
+    tokenized = tokenizer(in_sentence, return_tensors="pt", padding=True, truncation=True)
     outputs = model(**tokenized)
     return model.config.id2label[outputs.logits.argmax(dim=1).item()]
 
 
-sentence1 = "in war resolution, in defeat defiance, in victory magnanimity"
-predict(sentence1)
-print(predict(sentence1))
-
-sentence2 = "en la guerra resolución en la derrota desafío en la victoria magnanimidad"
-predict(sentence2)
-print(predict(sentence2))
-
-sentence3 = "هذا هو أعظم إله على الإطلاق"
-predict(sentence3)
-print(predict(sentence3))
+predict(test_sentences)
+print(test_sentences)

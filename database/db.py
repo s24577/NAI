@@ -8,7 +8,7 @@ dataset = load_dataset("papluca/language-identification")
 sample_sentences = []
 
 # Iteruje przez pierwsze 100 przykładów
-for example in dataset["train"]["text"][:100]:
+for example in dataset["train"]["text"][:5]:
     # Dodaje zdanie do listy sample_sentences
     sample_sentences.append(example)
 

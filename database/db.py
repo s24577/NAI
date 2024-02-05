@@ -1,21 +1,38 @@
-# Importujemy funkcję load_dataset z biblioteki datasets od Hugging Face.
+import csv
+
 from datasets import load_dataset
 
-# Ładuje zbiór danych "papluca/language-identification" z Hugging Face Datasets.
+# Załaduj zbiór danych
 dataset = load_dataset("papluca/language-identification")
 
-# Wybieramy 100 różnych zdań, każde w innym języku
-sample_sentences = []
+# Wybierz 100 przykładów z różnych języków
+languages_list = []
+sentences_list = []
 
-# Iteruje przez pierwsze 100 przykładów
-for example in dataset["train"]["text"][:5]:
-    # Dodaje zdanie do listy sample_sentences
-    sample_sentences.append(example)
 
-# Wyświetl przykłady
-for sentence in sample_sentences:
-    print(f"Sentence: {sentence}")
-# Zebrane wyniki zapisujemy do pliku
-with open("sample_sentences.txt", "w", encoding="utf-8") as file:
-    for sentence in sample_sentences:
-        file.write(f"Sentence: {sentence}\n")
+for language_example in dataset['train']['labels'][:5]:
+    languages_list.append({"Language": language_example})
+    if len(sentences_list) == 5:
+        break
+
+
+for sentence_example in dataset['train']['text'][:5]:
+    sentences_list.append({"Text": sentence_example})
+    if len(sentences_list) == 5:
+        break
+
+merged_list = list(zip(languages_list, sentences_list))
+
+with open("dataset.csv", "w", newline="", encoding="utf-8") as csvfile:
+    # Utwórz obiekt writer
+    csvwriter = csv.writer(csvfile)
+
+    # Dodaj nagłówki do pliku CSV
+    csvwriter.writerow(["Predicted_language", "Sentence"])
+
+    # Przewiń przez przykłady
+    for language_example1, sentence_example1 in merged_list:
+        # Zapisz do pliku CSV
+        csvwriter.writerow([language_example1["Language"], sentence_example1["Text"]])
+
+print("Wyniki zostały zapisane do pliku: predictions.csv")

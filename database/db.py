@@ -8,20 +8,13 @@ dataset = load_dataset("papluca/language-identification")
 # Wybierz 100 przykładów z różnych języków
 languages_list = []
 sentences_list = []
+# used_languages = set()
 
-
-for language_example in dataset['train']['labels'][:5]:
+for language_example, sentence_example in zip(dataset['train']['labels'][:30], dataset['train']['text'][:30]):
+    # if language_example not in used_languages:
     languages_list.append({"Language": language_example})
-    if len(sentences_list) == 5:
-        break
-
-
-for sentence_example in dataset['train']['text'][:5]:
     sentences_list.append({"Text": sentence_example})
-    if len(sentences_list) == 5:
-        break
-
-merged_list = list(zip(languages_list, sentences_list))
+        # used_languages.add(language_example)
 
 with open("dataset.csv", "w", newline="", encoding="utf-8") as csvfile:
     # Utwórz obiekt writer
@@ -31,8 +24,8 @@ with open("dataset.csv", "w", newline="", encoding="utf-8") as csvfile:
     csvwriter.writerow(["Predicted_language", "Sentence"])
 
     # Przewiń przez przykłady
-    for language_example1, sentence_example1 in merged_list:
+    for language_example1, sentence_example1 in zip(languages_list, sentences_list):
         # Zapisz do pliku CSV
         csvwriter.writerow([language_example1["Language"], sentence_example1["Text"]])
 
-print("Wyniki zostały zapisane do pliku: predictions.csv")
+print("Wyniki zostały zapisane do pliku: dataset.csv")

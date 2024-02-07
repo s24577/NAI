@@ -1,0 +1,17 @@
+WNIOSKI
+
+Model 1 - lxyuan/distilbert-base-multilingual-cased-sentiments-student
+    Precyzja w tym modelu jest wysoka, ale recall i f1 są dość niskie więc model ma zrównoważone podejście do unikania
+błędów, czyli fałszywie pozytywnych wyników oraz fałszywie negatywnych wyników, ale jego wydajność w obu
+kwestiach jest ograniczona.
+
+Model 2 - hakonmh/sentiment-xdistil-uncased
+    Posiada nieznacznie mniejszą precyzję niż model 1, ale recall i f1 są na wysokim poziomie (> 0.9), więc model bardzo
+dobrze identyfikuje sentyment i unika fałszywie pozytywnych wyników.
+
+Model 3 - cardiffnlp/twitter-roberta-base-sentiment-latest
+    Posiada najniższą, ale wciąż dobrą precyzję oraz umiarkowanie wysoki recall oraz f1. Oznacza to, że model nie ma
+skłonności do produkowania fałszywie pozytywnych wyników i jest dość precyzyjny w klasyfikowaniu przypadków.
+
+Podsumowując, najlepsze wyniki osiągnął model 2, a najgorsze model 1. Model 3 jest stosunkowo dobry, ale ma, podobnie
+jak model 1 skłonność do pomijania pozytywnych przypadków

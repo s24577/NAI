@@ -1,7 +1,7 @@
 def print_results(model_name, precision, recall, f1):
-    rounded_precision = "{:.2f}".format(precision)
-    rounded_recall = "{:.2f}".format(recall)
-    rounded_f1 = "{:.2f}".format(f1)
+    rounded_precision = "{:.3f}".format(precision)
+    rounded_recall = "{:.3f}".format(recall)
+    rounded_f1 = "{:.3f}".format(f1)
 
     print(f"{model_name} - Metrics:")
     print(f"Precision: {rounded_precision}, Recall: {rounded_recall}, F1: {rounded_f1}\n")

@@ -1,4 +1,4 @@
-from models.BERTbase import model_bertbase
+from models.DistilbertBase import model_bertbase
 from utils.printer import print_all_results
 
 if __name__ == "__main__":

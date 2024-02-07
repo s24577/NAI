@@ -26,7 +26,6 @@ def model_sentiment_xdistil(dataset_path):
         predicted_sentiment = sentiment_classifier(sentence)
         # Wyciągnięcie sentymentu z wyniki
         predicted_label = predicted_sentiment[0]['label'].lower()
-        print(predicted_label)
 
         # Dodanie wyniku zwróconego przez model do listy ze wszystkimi wynikami
         all_predictions.append((predicted_label, actual_sentiment))

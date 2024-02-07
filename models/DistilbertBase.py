@@ -18,7 +18,6 @@ def model_distilbert(dataset_path):
         actual_sentiment = row["Predicted_sentiment"]
         predicted_sentiment = distilled_student_sentiment_classifier(sentence)
         predicted_label = predicted_sentiment[0][0]['label']
-        print(predicted_sentiment[0][0]['label'])
 
         all_predictions.append((predicted_label, actual_sentiment))
 

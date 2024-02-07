@@ -1,7 +1,8 @@
 import pandas as pd
-from transformers import pipeline
-
+from transformers import pipeline, logging
 from utils.calculator import calculate_metrics
+
+logging.set_verbosity_error()
 
 sentiment_task = pipeline("sentiment-analysis",
                           model="cardiffnlp/twitter-roberta-base-sentiment-latest",

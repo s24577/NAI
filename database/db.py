@@ -18,7 +18,7 @@ dataset = load_dataset("ihassan1/auditor-sentiment")
 sentences_list = []
 labels_list = []
 
-for label_example, sentence_example in zip(dataset['train']['label'][:20], dataset['train']['sentence'][:20]):
+for label_example, sentence_example in zip(dataset['train']['label'][:30], dataset['train']['sentence'][:30]):
     sentences_list.append({"Text": sentence_example})
     labels_list.append({"Label": convert_label(label_example)})
 

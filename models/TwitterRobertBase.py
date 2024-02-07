@@ -1,11 +1,11 @@
 import pandas as pd
-from transformers import pipeline, RobertaForSequenceClassification, RobertaTokenizer
+from transformers import pipeline
 
 from utils.calculator import calculate_metrics
 
-tokenizer = RobertaTokenizer.from_pretrained("cardiffnlp/twitter-roberta-base-sentiment-latest")
-model = RobertaForSequenceClassification.from_pretrained("cardiffnlp/twitter-roberta-base-sentiment-latest")
-sentiment_task = pipeline(task="sentiment-analysis", model=model, tokenizer=tokenizer)
+sentiment_task = pipeline("sentiment-analysis",
+                          model="cardiffnlp/twitter-roberta-base-sentiment-latest",
+                          tokenizer="cardiffnlp/twitter-roberta-base-sentiment-latest")
 
 
 def model_twitter_robert(dataset_path):
@@ -17,7 +17,6 @@ def model_twitter_robert(dataset_path):
         actual_sentiment = row["Predicted_sentiment"]
         predicted_sentiment = sentiment_task(sentence)
         predicted_label = predicted_sentiment[0]['label']
-        print(predicted_label)
 
         all_predictions.append((predicted_label, actual_sentiment))
 

@@ -1,4 +1,3 @@
-import models.TwitterRobertBase
 from models.DistilbertBase import model_distilbert
 from models.SentimentXDistil import model_sentiment_xdistil
 from models.TwitterRobertBase import model_twitter_robert

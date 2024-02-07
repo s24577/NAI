@@ -11,21 +11,17 @@ distilled_student_sentiment_classifier = pipeline(
 
 def model_distilbert(dataset_path):
     dataset = pd.read_csv(dataset_path)
-    all_precisions, all_recalls, all_f1s = [], [], []
+    all_predictions = []
 
     for index, row in dataset.iterrows():
         sentence = row["Sentence"]
         actual_sentiment = row["Predicted_sentiment"]
         predicted_sentiment = distilled_student_sentiment_classifier(sentence)
-        print(predicted_sentiment)
-    #     precision, recall, f1 = calculate_metrics(predicted_sentiment, actual_sentiment)
-    #
-    #     all_precisions.append(precision)
-    #     all_recalls.append(recall)
-    #     all_f1s.append(f1)
-    #
-    # model1_precision = sum(all_precisions) / len(all_precisions)
-    # model1_recall = sum(all_recalls) / len(all_recalls)
-    # model1_f1 = sum(all_f1s) / len(all_f1s)
-    # return model1_precision, model1_recall, model1_f1
-    return
+        predicted_label = predicted_sentiment[0][0]['label']
+        print(predicted_sentiment[0][0]['label'])
+
+        all_predictions.append((predicted_label, actual_sentiment))
+
+    average_precision, average_recall, average_f1 = calculate_metrics(all_predictions)
+
+    return average_precision, average_recall, average_f1

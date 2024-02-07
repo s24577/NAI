@@ -1,12 +1,3 @@
-# from rouge import Rouge
-#
-#
-# def calculate_metrics(predicted_sentiment, actual_sentiment):
-#     rouge = Rouge()
-#     scores = rouge.get_scores(predicted_sentiment, actual_sentiment)
-#
-#     return scores[0]['rouge-l']['p'], scores[0]['rouge-l']['r'], scores[0]['rouge-l']['f']
-
 from sklearn.metrics import precision_score, recall_score, f1_score
 
 

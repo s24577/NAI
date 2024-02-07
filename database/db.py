@@ -7,18 +7,18 @@ def convert_label(label_example_input):
     if label_example_input == 0:
         return "negative"
     elif label_example_input == 1:
-        return "positive"
-    elif label_example_input == 2 or label_example_input == 3:
         return "neutral"
+    elif label_example_input == 2:
+        return "positive"
 
 
 # Załaduj zbiór danych
-dataset = load_dataset("poem_sentiment")
+dataset = load_dataset("ihassan1/auditor-sentiment")
 
 sentences_list = []
 labels_list = []
 
-for label_example, sentence_example in zip(dataset['train']['label'][:5], dataset['train']['verse_text'][:5]):
+for label_example, sentence_example in zip(dataset['train']['label'][:5], dataset['train']['sentence'][:5]):
     sentences_list.append({"Text": sentence_example})
     labels_list.append({"Label": convert_label(label_example)})
 

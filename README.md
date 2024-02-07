@@ -4,10 +4,9 @@ Zadaniem jest klasyfikacja sentymentu tekstu przy użyciu trzech różnych model
 
 Podejście do Rozwiązania - wykorzystujemy najpopularniejsze modele z Hugging Face na podstawie najczęstszych pobrań w ciągu miesiąca.
 ## Modele
-Między innymi korzystamy z:
-
-BERT (Bidirectional Encoder Representations from Transformers) - jest przydatny do zadań klasyfikacji tekstu, w tym identyfikacji języka również jest potężnym modelem pre-trenowanym, który potrafi efektywnie reprezentować semantykę tekstu.
-
-FASTTEXT: FastText to lekki model, który dobrze radzi sobie z klasyfikacją tekstu na podstawie języka. Jego siłą leży w szybkości działania i zdolności do obsługi tekstu w formie n-gramów, co może być korzystne w identyfikacji języka.
-
-XLM-RoBERTa: XLM-RoBERTa to model opracowany przez Facebook Research, skoncentrowany na rozszerzaniu zdolności RoBERTa do obsługi wielu języków. Jest silny w identyfikacji języka, a także radzi sobie z różnicami między językami.
+### Model 1
+Skrypt DistilbertBase.py wykorzystuje model DistilBERT do analizy sentymentu tekstu. Wczytuje zestaw danych, generuje sentyment tekstu i ocenia wydajność, korzystając z precyzji, czułości i wyniku F1.
+### Model 2
+Skrypt SentimentXDistil.py wykorzystuje model XDistil do analizy sentymentu tekstu. Wczytuje zestaw danych, generuje sentyment tekstu i ocenia wydajność, korzystając z precyzji, czułości i wyniku F1.
+### Model 3
+Skrypt TwitterRobertBase.py wykorzystuje model RoBERTa do analizy sentymentu tekstu. Wczytuje zestaw danych, generuje sentyment tekstu i ocenia wydajność, korzystając z precyzji, czułości i wyniku F1.

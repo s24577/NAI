@@ -9,6 +9,6 @@ def print_results(model_name, precision, recall, f1):
 
 def print_all_results(model1_metrics):
     print("Models Metrics:\n")
-    print_results("Model 1 - SharanSMenon/22-languages-bert-base-cased", *model1_metrics)
+    print_results("Model 1 - lxyuan/distilbert-base-multilingual-cased-sentiments-student", *model1_metrics)
     # print_results("Model 2 - Falconsai/text_summarization", *model2_metrics)
     # print_results("Model 3 - pszemraj/led-base-book-summary", *model3_metrics)

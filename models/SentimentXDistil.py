@@ -14,23 +14,22 @@ def model_sentiment_xdistil(dataset_path):
     # Wczytanie datasetu
     dataset = pd.read_csv(dataset_path)
     # Inicjalizacja listy przechowywującej wszystkie wyniki, które zwróci model
-    all_predictions = []
+    actual_sentiments, predicted_sentiments = [], []
 
     # Iteracja przez dataset
     for index, row in dataset.iterrows():
         # Treśc pobrana z datasetu, która będzie poddawana analizie
         sentence = row["Sentence"]
         # Przewidywana predykcja pobrana z datasetu
-        actual_sentiment = row["Predicted_sentiment"]
+        predicted_sentiment = row["Predicted_sentiment"]
         # Wykonanie predykcji przez model
-        predicted_sentiment = sentiment_classifier(sentence)
-        # Wyciągnięcie sentymentu z wyniki
-        predicted_label = predicted_sentiment[0]['label'].lower()
+        actual_sentiment = sentiment_classifier(sentence)[0]['label'].lower()
 
         # Dodanie wyniku zwróconego przez model do listy ze wszystkimi wynikami
-        all_predictions.append((predicted_label, actual_sentiment))
+        actual_sentiments.append(actual_sentiment)
+        predicted_sentiments.append(predicted_sentiment)
 
     # Wyliczenie średnich: precision, recall oraz f1 poprzez funckję calculate_metrics
-    average_precision, average_recall, average_f1 = calculate_metrics(all_predictions)
+    precision, recall, f1 = calculate_metrics(actual_sentiments, predicted_sentiments)
 
-    return average_precision, average_recall, average_f1
+    return precision, recall, f1

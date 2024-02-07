@@ -10,16 +10,16 @@ sentiment_task = pipeline("sentiment-analysis",
 
 def model_twitter_robert(dataset_path):
     dataset = pd.read_csv(dataset_path)
-    all_predictions = []
+    actual_sentiments, predicted_sentiments = [], []
 
     for index, row in dataset.iterrows():
         sentence = row["Sentence"]
-        actual_sentiment = row["Predicted_sentiment"]
-        predicted_sentiment = sentiment_task(sentence)
-        predicted_label = predicted_sentiment[0]['label']
+        predicted_sentiment = row["Predicted_sentiment"]
+        actual_sentiment = sentiment_task(sentence)[0]['label']
 
-        all_predictions.append((predicted_label, actual_sentiment))
+        actual_sentiments.append(actual_sentiment)
+        predicted_sentiments.append(predicted_sentiment)
 
-    average_precision, average_recall, average_f1 = calculate_metrics(all_predictions)
+    precision, recall, f1 = calculate_metrics(actual_sentiments, predicted_sentiments)
 
-    return average_precision, average_recall, average_f1
+    return precision, recall, f1
